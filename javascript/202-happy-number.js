@@ -21,5 +21,50 @@ var isHappy0 = function (n) {
 };
 
 console.log(isHappy0(19)); // true
-console.log(isHappy0(2)); // true
+console.log(isHappy0(2)); // false
 console.log(isHappy0(1111111)); // true
+
+// New a set to save sum number,
+// if the next sum calculation already exist on the hash set, it means a loop
+var isHappy1 = function (n) {
+  const hashSet = new Set();
+  let n2str = n.toString();
+  let sum = 0;
+  do {
+    hashSet.add(sum);
+    sum = 0;
+    for (let i = 0; i < n2str.split("").length; i++) {
+      sum += n2str[i] ** 2;
+    }
+    n2str = sum.toString();
+    if (sum === 1) return true;
+  } while (!hashSet.has(sum));
+  return false;
+};
+
+console.log(isHappy1(19)); // true
+console.log(isHappy1(2)); // false
+console.log(isHappy1(1111111)); // true
+
+var isHappy2 = function (n) {
+  if (n === 0) return false;
+  const hashSet = new Set();
+  let n2str = n.toString();
+  let sum = 0;
+
+  while (parseInt(n2str) !== 1) {
+    sum = n2str
+      .split("")
+      .map((ele) => ele ** 2)
+      .reduce((acc, cur) => acc + cur);
+    if (hashSet.has(sum)) return false;
+    hashSet.add(sum);
+    n2str = sum.toString();
+    sum = 0;
+  }
+  return true;
+};
+
+console.log(isHappy2(19)); // true
+console.log(isHappy2(2)); // false
+console.log(isHappy2(1111111)); // true
