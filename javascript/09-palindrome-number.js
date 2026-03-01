@@ -2,7 +2,7 @@
  * @param {number} x
  * @return {boolean}
  */
-const isPalindrome0 = function(x) {
+const isPalindrome0 = function (x) {
   const x2str = x.toString()
   const middleIdx = (x2str.length - 1) / 2
   const left = x2str.substring(0, middleIdx + 1).split('')
@@ -15,3 +15,18 @@ console.log(isPalindrome0(-121)) // false
 console.log(isPalindrome0(10)) // false
 console.log(isPalindrome0(0)) // false
 console.log(isPalindrome0(11)) // false
+
+const isPalindrome1 = function (x) {
+  if (x < 0) { return false };
+  const str = x.toString(); 
+  const reversed = str.split('').reverse().join('');
+  if (str === reversed) {
+      return true
+  }
+  return false
+}
+
+console.log(isPalindrome1(-121)) // false
+console.log(isPalindrome1(10)) // false
+console.log(isPalindrome1(0)) // false
+console.log(isPalindrome1(11)) // false
